@@ -10,3 +10,9 @@ body {
   background-color: #fff;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
 }
+
+//变量
+$navbar-color: #3c3e42;
+.navbar-inverse {
+  background-color: $navbar-color;
+}
