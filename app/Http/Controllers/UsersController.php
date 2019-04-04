@@ -6,6 +6,12 @@ use Illuminate\Http\Request;
 use App\Models\User;
 class UsersController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth', [
+            'except' => ['show', 'create', 'store']
+        ]);
+    }
     //创建用户
     public function create(){
         return view('users.create');
@@ -56,6 +62,7 @@ class UsersController extends Controller
      * @param User $user
      */
     public function edit(User $user){
+        $this->authorize('update',$user);
         return view('users.edit',compact('user'));
     }
 
@@ -68,6 +75,7 @@ class UsersController extends Controller
      */
     public function update(User $user, Request $request)
     {
+        $this->authorize('update',$user);
         $this->validate($request, [
             'name' => 'required|max:50',
             'password' => 'nullable|confirmed|min:6'
