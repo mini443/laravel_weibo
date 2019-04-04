@@ -19,7 +19,8 @@ class UsersController extends Controller
 
     //所有用户
     public function index(){
-        return '主页';
+        $users=User::all();
+        return view('users.index',compact('users'));
     }
 
     /**
