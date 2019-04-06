@@ -31,9 +31,9 @@ class UsersController extends Controller
      */
     public function show(User $user)
     {
-        $user=compact('user');
-//        dump($user->name);
-//        exit();
+        $statuses=$user->statuses()->orderBy('created_at','desc')
+            ->paginate(10);
+        $user=compact('user','statuses');
         return view('users.show', $user);
     }
 
